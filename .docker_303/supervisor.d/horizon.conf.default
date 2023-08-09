@@ -1,0 +1,11 @@
+[program:horizon]
+process_name=%(program_name)s
+command=php /var/www/app/artisan horizon
+user=www-data
+# user=root           ; crond should be started as root at all times
+autostart=true
+autorestart=true
+redirect_stderr=false
+stdout_logfile=/var/www/app/storage/logs/horizon.log
+stderr_logfile=/var/www/app/storage/errors/horizon.log
+stopwaitsecs=3600

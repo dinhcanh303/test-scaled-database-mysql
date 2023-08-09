@@ -1,0 +1,13 @@
+[program:cron-job]
+process_name=%(program_name)s
+command=crond -f
+user=root           ; crond should be started as root at all times
+autostart=true
+autorestart=true
+redirect_stderr=false
+stdout_logfile=/var/www/app/storage/logs/cron.log
+stderr_logfile=/var/www/app/storage/errors/cron.log
+stdout_logfile_maxbytes=0
+stderr_logfile_maxbytes=0
+
+numprocs=1

@@ -1,0 +1,10 @@
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+user=www-data
+autostart=true
+autorestart=true
+redirect_stderr=false
+stdout_logfile=/var/www/app/storage/logs/worker.log
+stderr_logfile=/var/www/app/storage/errors/worker.log
+
+numprocs=2
