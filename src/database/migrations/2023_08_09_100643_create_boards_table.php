@@ -1,8 +1,8 @@
 <?php
 
+use Database\Create\Database;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boards', function (Blueprint $table) {
-            $table->unsignedBigInteger('local_id');
-            $table->unsignedBigInteger('local_id');
-            $table->timestamps();
-        });
+        Database::createTable('boards',function (Blueprint $table) {
+        $table->unsignedBigInteger('board_id');
+        $table->unsignedBigInteger('post_id');
+        $table->timestamps();
+    });
     }
 
     /**
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boards');
+        Database::dropTable('boards');
     }
 };

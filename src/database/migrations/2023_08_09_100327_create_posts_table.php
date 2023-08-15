@@ -1,5 +1,6 @@
 <?php
 
+use Database\Create\Database;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pins', function (Blueprint $table) {
-            $table->unsignedBigInteger('local_id');
+        Database::createTable('posts',function (Blueprint $table) {
+            $table->id();
             $table->text('content');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pins');
+        Database::dropTable('posts');
     }
 };

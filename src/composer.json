@@ -21,10 +21,15 @@
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
+        "file": [
+            "helpers/helpers.php"
+        ],
         "psr-4": {
             "App\\": "app/",
+            "Utils\\": "utils/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Database\\Create\\": "database/create/"
         }
     },
     "autoload-dev": {

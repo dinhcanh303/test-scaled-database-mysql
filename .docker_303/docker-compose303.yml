@@ -82,14 +82,14 @@ services:
     networks:
       - laravel303
 
-  phpmyadmin1:
+  phpmyadmin_001a:
     image: phpmyadmin/phpmyadmin
-    container_name: laravel303_phpmyadmin1
+    container_name: phpmyadmin_001a
     restart: unless-stopped
     depends_on:
-      - mysql1
+      - mysql_001a
     environment:
-      PMA_HOST: mysql1
+      PMA_HOST: mysql_001a
       MYSQL_ROOT_PASSWORD: LNIBsCP9Gj7xF4d3
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
@@ -101,15 +101,15 @@ services:
     networks:
       - laravel303
 
-  mysql1:
+  mysql_001a:
     image: mysql
-    container_name: laravel303_mysql1
+    container_name: mysql_001a
     restart: unless-stopped
     tty: true
     ports:
       - "38603:3306"
     volumes:
-      - ../mysql1:/var/lib/mysql1
+      - ../mysql_001a:/var/lib/mysql_001a
     environment:
       MYSQL_ROOT_PASSWORD: LNIBsCP9Gj7xF4d3
       MYSQL_DATABASE: laravel
@@ -118,19 +118,43 @@ services:
     command: mysqld --log-bin-trust-function-creators=1
     networks:
       - laravel303
-  # websockets:
-  #   build:
-  #     context: ./websockets
-  #     dockerfile: Dockerfile
-  #   container_name: laravel303_websockets
-  #   restart: unless-stopped
-  #   working_dir: /var/www/app
-  #   volumes:
-  #     - ../src:/var/www/app
-  #   ports:
-  #     - "6001:6001"
-  #   networks:
-  #     - laravel303
+
+  phpmyadmin_002a:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_002a
+    restart: unless-stopped
+    depends_on:
+      - mysql_002a
+    environment:
+      PMA_HOST: mysql_002a
+      MYSQL_ROOT_PASSWORD: LNIBsCP9Gj7xF4d3
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      UPLOAD_LIMIT: 104857600
+      MEMORY_LIMIT: 2G
+      # MAX_EXECUTION_TIME: 600
+    ports:
+      - "38303:80"
+    networks:
+      - laravel303
+
+  mysql_002a:
+    image: mysql
+    container_name: mysql_002a
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "38703:3306"
+    volumes:
+      - ../mysql_002a:/var/lib/mysql_002a
+    environment:
+      MYSQL_ROOT_PASSWORD: LNIBsCP9Gj7xF4d3
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: tlc_app_2
+      MYSQL_PASSWORD: DLTedTfrVzYbrYv9
+    command: mysqld --log-bin-trust-function-creators=1
+    networks:
+      - laravel303
   php:
     build:
       context: .
