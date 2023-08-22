@@ -2,7 +2,7 @@
 
 
 return [
-    'instance' => 2,
+    'database_in_instance' => 2,
     'database_in_instance' => 3,
     'default' => [
         [
@@ -16,4 +16,8 @@ return [
             "slave" => "mysql_002b",
         ],
     ],
+    'type_id' => [
+        'post' => 1,
+        'board' => 1,
+    ]
 ];

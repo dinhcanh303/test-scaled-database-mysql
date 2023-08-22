@@ -1,8 +1,10 @@
 <?php
 
-use Database\Create\Database;
+use Database\Supports\BlueprintExtended;
+use Database\Supports\Database;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,10 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Database::createTable('posts',function (Blueprint $table) {
+        Database::createTable('posts',function (BlueprintExtended $table) {
             $table->id();
-            $table->text('content');
-            $table->timestamps();
+            $table->json('data')->nullable();
+            $table->appendCommonFields();
         });
         
     }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-
+$shardConfig = include(config_path('shard.php'));
 return [
 
     /*
@@ -60,6 +60,10 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        ...config_shard($shardConfig,'host')
+        ,
+        ...config_shard($shardConfig)
+        ,
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

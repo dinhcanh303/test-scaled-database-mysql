@@ -28,9 +28,8 @@ class MigrateCommand extends Command
     public function handle()
     {
         try {
-            $result = Database::create();
-            dump($result);
-            Database::createTableByDatabase();
+            $result = Database::createDatabase();
+            $this->info($result);
             return Command::SUCCESS;
         } catch (\Throwable $th) {
             $this->error($th->getMessage());
